@@ -25,8 +25,8 @@ let maxScore = 100 // Swift infers that maxScore is of type Int
 ## Data Types
 
 Swift has several built-in data types, including:
-- `Int`: Represents integer values.
-- `Double`: Represents floating-point values.
+- `Int`: Represents integer values. // 64-bit signed integer
+- `Double`: Represents floating-point values. // 64-bit floating-point number
 - `String`: Represents text values.
 - `Bool`: Represents boolean values (true or false).
 - `Array`: Represents a collection of values of the same type.
