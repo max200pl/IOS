@@ -39,3 +39,7 @@ Swift has several built-in data types, including:
 Int.random(in: 1...10) // Generates a random integer between 1 and 10
 ```
 
+## CONSTANTS let vs VAR
+
+- `let` is used to declare a constant, which means its value cannot be changed after it is set.
+- `var` is used to declare a variable, which means its value can be changed later in the code.
