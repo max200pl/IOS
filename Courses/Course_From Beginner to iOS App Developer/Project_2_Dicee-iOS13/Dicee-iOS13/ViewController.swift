@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var imageView1: UIImageView!
+    
+    @IBOutlet weak var imageView2: UIImageView!
+    
+    @IBAction func rollButtonPressed(_ sender: UIButton) {
+        print("Roll button pressed!")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
 
