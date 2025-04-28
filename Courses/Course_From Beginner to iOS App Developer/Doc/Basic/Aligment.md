@@ -41,7 +41,7 @@
 
 ## Stack View
 
-![StackView](StackView.png)
+![StackView](./Img/StackView.png)
 
 - Stack views are a type of container view that arranges its subviews in a linear or grid-like fashion.
 - In SwiftUI, stack views can be created using HStack (horizontal stack), VStack (vertical stack), and ZStack (overlapping stack).
