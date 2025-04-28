@@ -121,6 +121,16 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJN-th-c5K" userLabel="Timer View">
                                         <rect key="frame" x="0.0" y="514" width="374" height="218"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RlL-0R-wmw">
+                                                <rect key="frame" x="0.0" y="107" width="374" height="4"/>
+                                            </progressView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="RlL-0R-wmw" secondAttribute="trailing" id="CKu-Rh-64t"/>
+                                            <constraint firstItem="RlL-0R-wmw" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" id="hSM-9v-FwO"/>
+                                            <constraint firstItem="RlL-0R-wmw" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="joh-yR-F9a"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -134,6 +144,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="wI6-ag-afn" secondAttribute="trailing" id="dky-ZA-Z3J"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleLable" destination="XLm-5r-pSP" id="zXC-Ul-oQB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
