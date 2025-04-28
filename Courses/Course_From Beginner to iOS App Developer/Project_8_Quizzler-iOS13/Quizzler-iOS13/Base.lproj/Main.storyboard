@@ -57,7 +57,6 @@
                                         </state>
                                         <connections>
                                             <action selector="answerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n7x-fs-bdt"/>
-                                            <action selector="falseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xwl-ms-fUn"/>
                                         </connections>
                                     </button>
                                     <progressView opaque="NO" contentMode="scaleToFill" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TXm-qh-7Xg">
@@ -94,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210" y="24"/>
+            <point key="canvasLocation" x="397" y="20"/>
         </scene>
     </scenes>
     <resources>
