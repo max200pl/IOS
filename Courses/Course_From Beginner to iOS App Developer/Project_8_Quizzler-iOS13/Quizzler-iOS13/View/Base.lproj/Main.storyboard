@@ -86,14 +86,14 @@
                     </view>
                     <connections>
                         <outlet property="falseButton" destination="tbn-vQ-GyC" id="O4q-T3-Scx"/>
-                        <outlet property="progressBar" destination="TXm-qh-7Xg" id="l9O-dg-cvX"/>
+                        <outlet property="progressBar" destination="TXm-qh-7Xg" id="nhr-pg-Ngw"/>
                         <outlet property="questionLable" destination="rSI-li-mhO" id="lec-UB-HxU"/>
                         <outlet property="trueButton" destination="oVw-Hl-IRe" id="YkE-l3-gN7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="397" y="20"/>
+            <point key="canvasLocation" x="706" y="-117"/>
         </scene>
     </scenes>
     <resources>

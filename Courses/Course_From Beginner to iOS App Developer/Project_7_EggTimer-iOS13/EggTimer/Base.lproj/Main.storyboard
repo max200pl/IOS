@@ -148,13 +148,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="progressBar" destination="RlL-0R-wmw" id="ikx-CJ-KLQ"/>
                         <outlet property="titleLable" destination="XLm-5r-pSP" id="zXC-Ul-oQB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-699" y="113"/>
+            <point key="canvasLocation" x="-2046" y="67"/>
         </scene>
     </scenes>
     <resources>
