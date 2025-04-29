@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var heightLable: UILabel!
     @IBOutlet weak var weightLable: UILabel!
     
@@ -22,13 +21,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func heightSliderChange(_ sender: UISlider) {
-        var height = String(format: "%.2f", sender.value)
+        let height = String(format: "%.2f", sender.value)
     
         heightLable.text = "\(height) m"
     }
 
     @IBAction func weightSliderChange(_ sender: UISlider) {
-        var weight = String(format: "%.0f", sender.value)
+        let weight = String(format: "%.0f", sender.value)
     
         weightLable.text = "\(weight) kg"
     }
@@ -39,7 +38,12 @@ class ViewController: UIViewController {
         
         let bmi = weight / pow(height, 2)
         
-        let resultText = String(format: "%.2f", bmi) 
+        let secondVC = SecondViewController()
+        
+        print(String(format: "%.1f", bmi))
+        
+        secondVC.bmiValue = String(format: "%.1", bmi)
+        
+        self.present(secondVC, animated: true, completion: nil)
     }
 }
-
