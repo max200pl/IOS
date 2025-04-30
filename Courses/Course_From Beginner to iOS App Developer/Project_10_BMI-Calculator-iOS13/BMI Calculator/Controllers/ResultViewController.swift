@@ -11,23 +11,24 @@ import UIKit
 class ResultViewController: UIViewController {
     
     var bmiValue: String?
-
+    var advice: String?
+    var color: UIColor?
+    
     @IBOutlet weak var bmiLable: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
     
     
     override func viewDidLoad() {
+        // Do any additional setup after loading the view.
         super.viewDidLoad()
 
         bmiLable.text = bmiValue
-        // Do any additional setup after loading the view.
+        view.backgroundColor = color
+        adviceLabel.text = advice
     }
     
     @IBAction func recalculatePressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil) // Close window
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
 
     /*

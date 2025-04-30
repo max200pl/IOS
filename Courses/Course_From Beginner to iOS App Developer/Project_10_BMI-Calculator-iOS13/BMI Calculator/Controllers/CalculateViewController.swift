@@ -44,23 +44,15 @@ class CalculateViewController: UIViewController {
         calculateBrain.calculateBMI(height: height, weight: weight)
         
         self.performSegue(withIdentifier: "goToResult", sender: self)
-        
-//        let secondVC = SecondViewController()
-//        
-//        print(String(format: "%.1f", bmi))
-//        
-//        secondVC.bmiValue = String(format: "%.1", bmi)
-//        
-//        self.present(secondVC, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
         if segue.identifier == "goToResult" {
             let distinationVC = segue.destination as! ResultViewController
             distinationVC.bmiValue = calculateBrain.getBMIValue()
+            
+            distinationVC.advice = calculateBrain.getAdvice()
+            distinationVC.color = calculateBrain.getColor()
         }
     }
 }
