@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculateViewController: UIViewController {
     @IBOutlet weak var heightLable: UILabel!
     @IBOutlet weak var weightLable: UILabel!
     
     @IBOutlet weak var weightSlider: UISlider!
     @IBOutlet weak var heightSlider: UISlider!
+    
+    var bmiValue = "0.0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +40,26 @@ class ViewController: UIViewController {
         
         let bmi = weight / pow(height, 2)
         
-        let secondVC = SecondViewController()
+        bmiValue = String(format: "%.1f", bmi)
         
-        print(String(format: "%.1f", bmi))
+        self.performSegue(withIdentifier: "goToResult", sender: self)
         
-        secondVC.bmiValue = String(format: "%.1", bmi)
+//        let secondVC = SecondViewController()
+//        
+//        print(String(format: "%.1f", bmi))
+//        
+//        secondVC.bmiValue = String(format: "%.1", bmi)
+//        
+//        self.present(secondVC, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
         
-        self.present(secondVC, animated: true, completion: nil)
+        if segue.identifier == "goToResult" {
+            let distinationVC = segue.destination as! ResultViewController
+            distinationVC.bmiValue = bmiValue
+        }
     }
 }
