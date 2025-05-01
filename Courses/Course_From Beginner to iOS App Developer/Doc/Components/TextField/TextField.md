@@ -6,6 +6,9 @@
 
 ![TextFieldFields](TextFieldFields.png)
 
+-  `UITextFieldDelegate` is a protocol that allows you to respond to events in a text field, such as when the user begins or ends editing, or when the text changes. By implementing this protocol, you can customize the behavior of the text field and respond to user input.
+-  `UITextField` is a UIKit component that allows users to enter and edit text. It provides various customization options, such as setting the placeholder text, configuring the keyboard type, and handling user interactions.
+
 ```swift
 import SwiftUI
 
