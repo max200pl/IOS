@@ -57,8 +57,12 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         searchTextField.text = "" // Reset
     }
     
-    func didUpdateWeather(weather: WeatherModel){
+    func didUpdateWeather(_ weatherManager: WeatherManager, _ weather: WeatherModel) {
         print(weather.temperature)
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print(error)
     }
 }
 
