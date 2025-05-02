@@ -65,3 +65,44 @@ class NetworkManager {
             .store(in: &cancellables)
     }
 }
+
+// Usage
+let networkManager = NetworkManager()
+networkManager.fetchUsers()
+```
+
+## Example 2 DispatchQueue
+
+- Use `DispatchQueue` to perform network requests on a background thread and update the UI on the main thread.
+
+```swift
+import Foundation
+import UIKit
+
+class NetworkManager {
+    func fetchData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    completion(data, nil)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+}
+// Usage
+let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+let networkManager = NetworkManager()
+networkManager.fetchData(from: url) { data, error in
+    if let error = error {
+        print("Error fetching data: \(error)")
+    } else if let data = data {
+        print("Fetched data: \(data)")
+    }
+}
+```
