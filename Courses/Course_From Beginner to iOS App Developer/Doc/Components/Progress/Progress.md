@@ -27,6 +27,7 @@ You can update the progress object by incrementing the completed unit count. Her
 progress.completedUnitCount += 10
 ```
 In this example, the completed unit count is incremented by 10, indicating that 10 more units of work have been completed.
+
 ## Observing Progress
 You can observe changes to the progress object using Key-Value Observing (KVO) or by using the `addObserver` method. Here's an example of observing progress changes:
 
