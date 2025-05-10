@@ -1,0 +1,30 @@
+# — macOS —
+.DS_Store
+
+# — Xcode: сборка и пользовательские файлы —
+build/                   # каталоги сборки (если вы используете Legacy Build Locations)
+DerivedData/             # (если вы отвязывали DerivedData от глобальной папки)
+*.xcworkspace            # генерируемые workspace-файлы
+*.xcuserstate            # временные состояния
+xcuserdata/              # user-specific настройки Xcode
+
+# — CocoaPods (во всех подпроектах) —
+Pods/
+
+# — Swift Package Manager —
+.swiftpm/
+Packages/
+
+# — Carthage —
+Carthage/Build/
+
+# — Fastlane —
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# — Архивы и playgrounds —
+*.xcarchive
+timeline.xctimeline
+playground.xcworkspace

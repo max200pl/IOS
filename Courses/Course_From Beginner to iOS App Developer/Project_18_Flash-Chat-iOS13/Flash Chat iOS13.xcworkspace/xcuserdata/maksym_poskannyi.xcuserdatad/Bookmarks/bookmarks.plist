@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>top-level-items</key>
+	<array>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>payload</key>
+					<string>x-xcode-log://DA3894ED-9B58-443F-A1C8-204454F63705</string>
+				</dict>
+				<key>scheme</key>
+				<string>x-xcode-log</string>
+				<key>type</key>
+				<string>DVTDocumentLocation</string>
+			</dict>
+			<key>title</key>
+			<string>Bookmark “Build Flash Chat iOS13 - Log”</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>37</string>
+					<key>EndingLineNumber</key>
+					<string>102</string>
+					<key>StartingColumnNumber</key>
+					<string>37</string>
+					<key>StartingLineNumber</key>
+					<string>102</string>
+					<key>Timestamp</key>
+					<string>768496841.215082</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Project_18_Flash-Chat-iOS13/Pods/gRPC-Core/src/core/lib/promise/detail/basic_seq.h</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>title</key>
+			<string>Error: A template argument list is expected after a name prefixed by the template keyword</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+	</array>
+</dict>
+</plist>

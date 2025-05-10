@@ -9,6 +9,7 @@ CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It s
    sudo gem install cocoapods // This command installs CocoaPods using RubyGems.
    ```
    pod setup --verbose // This command sets up the CocoaPods environment.
+   pod update // This command updates the local CocoaPods repository.
    ```
 
 ### Pod overview

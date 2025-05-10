@@ -1,8 +1,28 @@
-# Uncomment the next line to define a global platform for your project
-platform :ios, '10.0'
+install! 'cocoapods', :disable_input_output_paths => true
+inhibit_all_warnings!
+
+platform :ios, '13.0'
 
 target 'Flash Chat iOS13' do
   use_frameworks!
-
-  # Pods for Flash Chat iOS13
+  pod 'Firebase/Auth', '~> 11.0'
+  pod 'Firebase/Firestore', '~> 11.0'
 end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+    end
+
+    if target.name == 'BoringSSL-GRPC'
+      target.source_build_phase.files.each do |file|
+        next unless file.settings && file.settings['COMPILER_FLAGS']
+        flags = file.settings['COMPILER_FLAGS'].split(' ')
+        flags.reject! { |f| f == '-G' || f.start_with?('-GCC') }
+        file.settings['COMPILER_FLAGS'] = flags.join(' ')
+      end
+    end
+  end
+end
+
