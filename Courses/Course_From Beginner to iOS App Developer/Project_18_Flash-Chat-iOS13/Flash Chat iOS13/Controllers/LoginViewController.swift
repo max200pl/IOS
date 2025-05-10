@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     print("Failed to login: \(error.localizedDescription)")
                 } else {
-                    self?.performSegue(withIdentifier: "LoginToChart", sender: self)
+                    self?.performSegue(withIdentifier: K.loginSegue, sender: self)
                 }
             }
         }

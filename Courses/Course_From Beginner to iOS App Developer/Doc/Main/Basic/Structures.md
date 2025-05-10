@@ -54,3 +54,23 @@ var myBlackBox = BlackBox(name: "MyBlackBox", version: "1.0", features: ["Featur
 
 myBlackBox.displayInfo()
 ```
+
+## Example of a Structure with static properties
+
+```swift
+struct StaticExample {
+    static let staticProperty = "This is a static property"
+    var instanceProperty: String
+
+    init(instanceProperty: String) {
+        self.instanceProperty = instanceProperty
+    }
+
+    static func staticMethod() {
+        print("This is a static method")
+    }
+}
+var example = StaticExample(instanceProperty: "This is an instance property")
+print(StaticExample.staticProperty)
+StaticExample.staticMethod() // Output: This is a static method
+```
