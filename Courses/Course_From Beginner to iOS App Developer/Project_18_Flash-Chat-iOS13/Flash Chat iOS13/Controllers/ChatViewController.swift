@@ -14,11 +14,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
-    var message: [Message] = [
-        Message(sender: "1@gmail.com", body: "Hey"),
-        Message(sender: "2@gmail.com", body: "Hello!"),
-        Message(sender: "1@gmail.com", body: "What's up?"),
-    ]
+    let db = Firestore.firestore()
+    
+    var message: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +26,50 @@ class ChatViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        
+        loadMessages()
+        
+    }
+    
+    func loadMessages() {
+        message = []
+        
+        db.collection(K.FStore.collectionName).getDocuments { (querySnapshot, error) in
+            if let e = error {
+                print("There was an issue retrieving data from Firestore: \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        let data = doc.data()
+                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                            let newMessage = Message(sender: messageSender, body: messageBody)
+                            self.message.append(newMessage)
+                            
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+            db.collection(K.FStore.collectionName).addDocument(data: [
+                K.FStore.senderField: messageSender,
+                K.FStore.bodyField: messageBody
+            ]) { (error) in
+                if let e = error {
+                    print("There was an issue saving data to Firestore: \(e)")
+                } else {
+                    print("Data successfully saved!")
+                    
+                }
+            }
+              
+        }
     }
     
 
@@ -59,6 +98,6 @@ extension ChatViewController: UITableViewDataSource {
         
         return cell
     }
+    
 }
-
  
