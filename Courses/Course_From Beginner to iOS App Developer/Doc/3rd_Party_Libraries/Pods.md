@@ -18,3 +18,30 @@ target 'Flash Chat iOS13' do
 end
 ```
 
+## Use terminal to install pods
+
+1. Open the terminal and navigate to the project directory where the Podfile is located.
+2. Run the following command to install the pods specified in the Podfile:
+
+- `pod init` initializes the Podfile in the current directory.
+- `open Podfile -a Xcode` opens the Podfile in Xcode for editing.
+- `pod install` installs the specified pods and creates an Xcode workspace.
+
+```bash
+pod init; open Podfile -a Xcode
+pod install
+```
+
+```pod
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'Todoey' do
+  use_frameworks!
+
+  # Pods for Todoey
+
+  pod 'RealmSwift'
+
+end
+```
