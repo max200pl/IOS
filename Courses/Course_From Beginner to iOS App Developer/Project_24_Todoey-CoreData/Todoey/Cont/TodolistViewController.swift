@@ -14,12 +14,16 @@ class TodolistViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var selectedCategory: Category? {
+        didSet {
+            LoadItems()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
-        LoadItems()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +66,7 @@ class TodolistViewController: UITableViewController {
             
             newItem.title = textField.text!
             newItem.done = false
-            
+            newItem.parentCategory = self.selectedCategory
             self.itemArray.append(newItem)
             
             self.SaveItems()
@@ -96,7 +100,20 @@ class TodolistViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func LoadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
+    func LoadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+        
+//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, predicate])
+//        
+//        request.predicate = compoundPredicate
         
         do {
             itemArray = try context.fetch(request)

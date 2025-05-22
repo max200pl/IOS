@@ -32,10 +32,29 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        
         let category = categories[indexPath.row]
+        
         cell.textLabel?.text = category.name
+        
         return cell
+    }
+    
+    //MARK: - TableView Delegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToItems", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TodolistViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = categories[indexPath.row]
+        }
+         
     }
     
 
@@ -94,6 +113,4 @@ class CategoryViewController: UITableViewController {
         present(alert, animated: true, completion: nil )
         
     }
-    
-    //MARK: - TableView Delegate Methods
 }
