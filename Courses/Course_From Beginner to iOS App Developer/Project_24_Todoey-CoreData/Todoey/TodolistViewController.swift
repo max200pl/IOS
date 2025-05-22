@@ -13,12 +13,12 @@ class TodolistViewController: UITableViewController {
     var itemArray = [Item]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-    
+        
         LoadItems()
     }
     
@@ -37,14 +37,14 @@ class TodolistViewController: UITableViewController {
         cell.textLabel?.text = item.title
         
         cell.accessoryType = item.done ? .checkmark: .none
-    
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
-                
+        
         SaveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -57,7 +57,7 @@ class TodolistViewController: UITableViewController {
         let alert = UIAlertController(title: "Add new ToDo", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-           // What will happen once the user clicks the Add Item button on our UIAlert
+            // What will happen once the user clicks the Add Item button on our UIAlert
             let newItem = Item(context: self.context)
             
             newItem.title = textField.text!
@@ -96,14 +96,49 @@ class TodolistViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func LoadItems() {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
+    func LoadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
         
         do {
-           itemArray = try context.fetch(request)
+            itemArray = try context.fetch(request)
         } catch {
             print("Error fetching data, \(error)")
         }
+        
+        // RELOAD TABLE VIEW
+        
+        tableView.reloadData()
     }
 }
 
+//MARK: - UISearchBarDelegate
+
+extension TodolistViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        //SEARCH DATA
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.predicate = predicate
+        
+        // SORTING
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        request.sortDescriptors = [sortDescriptor]
+        
+        LoadItems(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            LoadItems()
+            
+            // Wating when main thread
+            DispatchQueue.main.async {
+                // IF not long time did nothing cursor disaprear and ceyboard
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+}
