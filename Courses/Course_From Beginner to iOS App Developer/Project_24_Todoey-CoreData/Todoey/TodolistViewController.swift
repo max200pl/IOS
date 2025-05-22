@@ -19,11 +19,7 @@ class TodolistViewController: UITableViewController {
         // Do any additional setup after loading the view.
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     
-//        LoadItems()
-        
-//        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
-//            itemArray = items
-//        }
+        LoadItems()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,17 +96,14 @@ class TodolistViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-//    func LoadItems() {
-//        if let data = try? Data(contentsOf: dataFilePath!) {
-//            let decoder = PropertyListDecoder()
-//            
-//            do {
-//                itemArray = try decoder.decode([Item].self, from: data)
-//            } catch {
-//                
-//                print ("Error decoding item array, \(error)")
-//            }
-//        }
-//    }
+    func LoadItems() {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        do {
+           itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data, \(error)")
+        }
+    }
 }
 
