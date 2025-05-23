@@ -13,9 +13,20 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
     }
+    
+    // TableVie DataSource Methods
+    
+    // DEF ONE CEL
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwipeTableViewCell
+        
+        cell.delegate = self
+        
+        return cell
+    }
+    
     
     // WHEN USER ACTUALLY SWIPE CELL
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -25,19 +36,8 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
             // handle action by updating model with deletion
             
             print("Delete row \(indexPath.row)")
-        
-//            if let categoryForDelition = self.categories?[indexPath.row]{
-//                do {
-//                    
-//                    try self.realm.write {
-//                        self.realm.delete( categoryForDelition)
-//                    }
-//                } catch {
-//                    print("Error deleting category: \(error)")
-//                }
-//            }
             
-            
+            self.updateModel(at: indexPath)
         }
 
         // customize the action appearance
@@ -51,5 +51,9 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         options.expansionStyle = .destructive
     
         return options
+    }
+    
+    func updateModel(at indexPath: IndexPath) {
+        
     }
 }

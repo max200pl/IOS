@@ -8,9 +8,8 @@
 
 import UIKit
 import RealmSwift
-import SwipeCellKit
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
     
     // INIT REALM
     let realm = try! Realm()
@@ -25,16 +24,7 @@ class CategoryViewController: UITableViewController {
         
         tableView.rowHeight = 80
     }
-    
-    //MARK: - TableView DataSource Methods
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwipeTableViewCell
-//        cell.delegate = self
-//        return cell
-//    }
-//
-    
+
     // RETRUN length ROWS FOR TABLE
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories?.count ?? 1
@@ -42,18 +32,13 @@ class CategoryViewController: UITableViewController {
     
     // DEF ONE CEL
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // SWIPE CEL
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! SwipeTableViewCell
-        
-        cell.delegate = self
-
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No categories added yet"
         
         return cell
     }
-    
-    //MARK: - TableView Delegate Methods
-    
     
     // WHEN WE CLICK ON CELL
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -73,14 +58,6 @@ class CategoryViewController: UITableViewController {
 
     //MARK: - Data Manipulation Methods
     
-    func loadCategories() {
-        //FETCH ALL OBJECTS realm
-        categories = realm.objects(Category.self)
-        
-        tableView.reloadData()
-    }
-    
-    
     func save(category: Category) {
         do {
             try realm.write{
@@ -93,6 +70,28 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func loadCategories() {
+        //FETCH ALL OBJECTS realm
+        categories = realm.objects(Category.self)
+        
+        tableView.reloadData()
+    }
+    
+    //MARK: - Delete Data From Swiper
+    
+    override func updateModel(at indexPath: IndexPath) {
+        super.updateModel(at: indexPath)
+        
+        if let categoryForDeletion = self.categories?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(categoryForDeletion)
+                }
+            } catch {
+                print("Error deleting category: \(error)")
+            }
+        }
+    }
     
     //MARK: - Add New Categories
     
@@ -122,41 +121,3 @@ class CategoryViewController: UITableViewController {
     }
 }
 
-//MARK: - SwipeTableViewCellDelegate
-
-extension CategoryViewController: SwipeTableViewCellDelegate {
-    
-    // WHEN USER ACTUALLY SWIPE CELL
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            // handle action by updating model with deletion
-        
-            if let categoryForDelition = self.categories?[indexPath.row]{
-                do {
-                    
-                    try self.realm.write {
-                        self.realm.delete( categoryForDelition)
-                    }
-                } catch {
-                    print("Error deleting category: \(error)")
-                }
-            }
-            
-            
-        }
-
-        // customize the action appearance
-        deleteAction.image = UIImage(named: "delete-icon")
-
-        return [deleteAction]
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        options.expansionStyle = .destructive
-    
-        return options
-    }
-}
