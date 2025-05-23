@@ -11,28 +11,27 @@ import RealmSwift
 
 
 class CategoryViewController: UITableViewController {
+    
+    // INIT REALM
     let realm = try! Realm()
     
+    // DEF Results Realm
     var categories:Results<Category>?
      
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         loadCategories()
     }
     
     //MARK: - TableView DataSource Methods
     
+    // RETRUN length ROWS FOR TABLE
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories?.count ?? 1
     }
     
+    // DEF ONE CEL
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
@@ -44,6 +43,8 @@ class CategoryViewController: UITableViewController {
     
     //MARK: - TableView Delegate Methods
     
+    
+    // WHEN WE CLICK ON CELL
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToItems", sender: self)
     }
@@ -51,6 +52,7 @@ class CategoryViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodolistViewController
         
+        //DEF DISTANATION FOR OPEN NEW VIEW
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedCategory = categories?[indexPath.row]
         }
@@ -61,6 +63,7 @@ class CategoryViewController: UITableViewController {
     //MARK: - Data Manipulation Methods
     
     func loadCategories() {
+        //FETCH ALL OBJECTS realm
         categories = realm.objects(Category.self)
         
         tableView.reloadData()
@@ -84,7 +87,7 @@ class CategoryViewController: UITableViewController {
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
-        
+         
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Category", style: .default) { (action) in

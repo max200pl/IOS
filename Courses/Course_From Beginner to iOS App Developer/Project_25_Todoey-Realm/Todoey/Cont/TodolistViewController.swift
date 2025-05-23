@@ -16,6 +16,7 @@ class TodolistViewController: UITableViewController {
     
 //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    //SET SELECTED CATEGORY
     var selectedCategory: Category? {
         didSet {
             LoadItems()
@@ -28,10 +29,14 @@ class TodolistViewController: UITableViewController {
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
+    //MARK: - TABLE ACTIONS
+    
+    // DEF CELS COUNT
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoItems?.count ?? 1
     }
     
+    // DEF CELS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //Get current cell
@@ -40,7 +45,6 @@ class TodolistViewController: UITableViewController {
         if let item = todoItems?[indexPath.row] {
             //Set text for text label
             cell.textLabel?.text = item.title
-            
             cell.accessoryType = item.done ? .checkmark: .none
         } else {
             cell.textLabel?.text = "No ToDos added yet";
@@ -49,6 +53,8 @@ class TodolistViewController: UITableViewController {
         return cell
     }
     
+    
+    // SELECT CELL
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
         if let item = todoItems?[indexPath.row] {
@@ -109,26 +115,25 @@ class TodolistViewController: UITableViewController {
     
  
     func LoadItems() {
+        //FILTERED CURENT ITEM
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
-        
-  
         
         tableView.reloadData()
     }
 }
 
-//MARK: - UISearchBarDelegate
+//MARK: - UISearchBarDelegate WORKING WITH SEARCH BAR
 
 extension TodolistViewController: UISearchBarDelegate {
     
-    //! FILTERING BY SEARCH BAR
+    // FILTERING BY SEARCH BAR
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         todoItems  = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         
         tableView.reloadData()
     }
     
-    //! WHEN WE DISMISS
+    // WHEN WE DISMISS
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             LoadItems()
@@ -141,3 +146,6 @@ extension TodolistViewController: UISearchBarDelegate {
         }
     }
 }
+
+
+
