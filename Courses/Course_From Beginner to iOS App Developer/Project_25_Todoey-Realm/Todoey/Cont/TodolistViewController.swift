@@ -51,10 +51,20 @@ class TodolistViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-//        todoItems?[indexPath.row].done = !((todoItems?[indexPath.row].done) != nil)
-//        
-//        SaveItems()
+        if let item = todoItems?[indexPath.row] {
+            do {
+                try realm.write {
+                    item.done = !item.done
+                    
+                    //DELEATE ITEM
+//                    realm.delete(item)
+                }
+            } catch {
+                print("Error saving data: \(error)")
+            }
+        }
         
+        tableView.reloadData( )
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -72,6 +82,7 @@ class TodolistViewController: UITableViewController {
                     try self.realm.write{
                         let newItem = Item()
                         newItem.title = textField.text!
+                        newItem.dateCreated = Date()
                         currentCategory.items.append(newItem)
                     }
                 } catch {
@@ -108,33 +119,25 @@ class TodolistViewController: UITableViewController {
 
 //MARK: - UISearchBarDelegate
 
-//extension TodolistViewController: UISearchBarDelegate {
-//    
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        let request: NSFetchRequest<Item> = Item.fetchRequest()
-//        
-//        //SEARCH DATA
-//        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-//        
-//        request.predicate = predicate
-//        
-//        // SORTING
-//        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-//        
-//        request.sortDescriptors = [sortDescriptor]
-//        
-//        LoadItems(with: request)
-//    }
-//    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text?.count == 0 {
-//            LoadItems()
-//            
-//            // Wating when main thread
-//            DispatchQueue.main.async {
-//                // IF not long time did nothing cursor disaprear and ceyboard
-//                searchBar.resignFirstResponder()
-//            }
-//        }
-//    }
-//}
+extension TodolistViewController: UISearchBarDelegate {
+    
+    //! FILTERING BY SEARCH BAR
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        todoItems  = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+        
+        tableView.reloadData()
+    }
+    
+    //! WHEN WE DISMISS
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            LoadItems()
+            
+            // Wating when main thread
+            DispatchQueue.main.async {
+                // IF not long time did nothing cursor disaprear and ceyboard
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+}
