@@ -112,3 +112,34 @@ You can also use `break` to exit a switch statement:
             print("Other")
     }
 ```
+
+## Guard Statement
+
+The `guard` statement is used to check a condition and exit the current scope if the condition is not met. It is often used for early exits in functions or methods when certain conditions are not met. The main advantage of using `guard` is that it helps to keep your code clean and readable by reducing the need for nested if statements. Here's an example:
+
+```swift
+    func checkAge(age: Int) {
+        guard age >= 18 else {
+            print("You are a minor.")
+            return
+        }
+        print("You are an adult.")
+    }
+```
+
+### Guard with Optional Binding
+You can also use `guard` for optional binding, which allows you to safely unwrap optionals:
+
+```swift
+    func printName(name: String?) {
+        guard let unwrappedName = name else {
+            print("Name is nil.")
+            return
+        }
+        print("Name is \(unwrappedName).")
+    }
+```
+
+### Guard VS If
+
+The main difference between `guard` and `if` is that `guard` requires an else clause, which must exit the current scope (e.g., return, break, continue). This makes `guard` a good choice for early exits in functions or methods. In contrast, `if` does not require an else clause and can be used for more complex conditional logic.

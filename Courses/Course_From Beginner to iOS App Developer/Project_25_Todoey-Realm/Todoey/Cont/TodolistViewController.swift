@@ -29,6 +29,13 @@ class TodolistViewController: SwipeTableViewController {
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
+    // JUST Before USER SEE SKREEN
+    override func viewWillAppear(_ animated: Bool) {
+        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation Bar not found")}
+        
+        navBar.barTintColor = UIColor(named: "#1D9BF6")
+    }
+    
     //MARK: - TABLE ACTIONS
     
     // DEF CELS COUNT
