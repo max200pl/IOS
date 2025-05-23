@@ -22,18 +22,25 @@ class TodolistViewController: SwipeTableViewController {
             LoadItems()
         }
     }
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        print(selectedCategory?.name ?? "No Category Selected")
+        title = selectedCategory?.name
     }
     
     // JUST Before USER SEE SKREEN
     override func viewWillAppear(_ animated: Bool) {
-        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation Bar not found")}
+//         guard let navBar = navigationController?.navigationBar else {fatalError("Navigation Bar not found")}
         
-        navBar.barTintColor = UIColor(named: "#1D9BF6")
+//        let navBarColor = UIColor(hue: 0.12, saturation: 0.81, brightness: 0.94, alpha: 1.0)
+//        navBar.barTintColor = navBarColor
+//        searchBar.barTintColor = navBarColor
+//        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     //MARK: - TABLE ACTIONS
