@@ -20,3 +20,30 @@ let myFloat: CGFloat = CGFloat(myInt) // Convert Int to CGFloat
 
 ### When to use CGFloat
 - Use `CGFloat` when working with graphics, UI elements, or any calculations that require decimal precision.
+
+
+## ceilf
+
+- `ceilf` is a function in Swift that rounds a floating-point number up to the nearest integer value.
+- It is part of the C standard library and can be used in Swift by importing the Foundation framework.
+- The `ceilf` function takes a single argument of type `Float` and returns a `Float` value that is the smallest integer greater than or equal to the input value.
+
+### Example of ceilf
+```swift
+import Foundation
+let number: Float = 3.14
+let roundedUp: Float = ceilf(number)
+print(roundedUp) // Output: 4.0
+```
+## floorf
+- `floorf` is a function in Swift that rounds a floating-point number down to the nearest integer value.
+- It is part of the C standard library and can be used in Swift by importing the Foundation framework.
+- The `floorf` function takes a single argument of type `Float` and returns a `Float` value that is the largest integer less than or equal to the input value.
+
+### Example of floorf
+```swift
+import Foundation
+let number: Float = 3.14
+let roundedDown: Float = floorf(number)
+print(roundedDown) // Output: 3.0
+```
