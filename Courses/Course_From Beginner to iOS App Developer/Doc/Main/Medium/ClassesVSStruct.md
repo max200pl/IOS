@@ -1,5 +1,7 @@
 # Classes Vs Struct in Swift
 
+[Udemy course Link Different between struct and class](https://www.udemy.com/course/ios-13-app-development-bootcamp/learn/lecture/11860644#overview)
+
 ## Classes
 
 Classes are reference types, meaning that when you assign or pass a class instance, you are passing a reference to the same instance. This means that changes made to one reference will affect all references to that instance.

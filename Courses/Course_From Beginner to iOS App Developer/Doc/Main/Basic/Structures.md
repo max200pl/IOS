@@ -1,5 +1,7 @@
 # Structures in Swift
 
+[Udemy course Link Different between struct and class](https://www.udemy.com/course/ios-13-app-development-bootcamp/learn/lecture/11860644#overview)
+
 Structures are a fundamental building block in Swift programming. They are used to create complex data types that can encapsulate both data and behavior. In this document, we will cover the basics of structures in Swift, including their declaration, properties, methods, and usage.
 
 ## Example of a Structure
