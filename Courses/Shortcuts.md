@@ -8,3 +8,7 @@
 
 - **Command + Shift + 3**: Take a screenshot of the entire screen.
 - **Command + Shift + 4**: Take a screenshot of a selected area.
+
+### XCode
+
+
