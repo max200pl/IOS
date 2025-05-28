@@ -26,6 +26,7 @@ struct CounterView: View {
 }
 ```
 #### Notice @State
+
 - `@State` is used to declare a mutable state variable.
 - Если стейт обновлися но нет мес в юи где используется этот стейт, то юи не обновится.
 
@@ -43,3 +44,78 @@ struct CounterView: View {
     }
 }
 ```
+
+#### State binding changes use `$` prefix
+
+```swift
+struct CounterView: View {
+    @State private var count = 0
+
+    var body: some View {
+        VStack {
+            Text("Count: \(count)")
+            Button("Increment") {
+                count += 1
+            }
+            // Binding to the state variable
+            Toggle(isOn: $count) {
+                Text("Toggle Count")
+            }
+        }
+    }
+}
+```
+
+## @Binding
+- A property wrapper that creates a two-way connection to a state variable.
+- It allows a child view to read and write to a state variable owned by a parent view.
+```swift
+struct ParentView: View {
+    @State private var isOn = false
+
+    var body: some View {
+        ChildView(isOn: $isOn)
+    }
+}
+struct ChildView: View {
+    @Binding var isOn: Bool
+
+    var body: some View {
+        Toggle("Switch", isOn: $isOn)
+    }
+}
+```
+
+## @ObservedObject
+- A property wrapper that allows a view to observe an object that conforms to the `ObservableObject` protocol.
+- When the observed object changes, the view is automatically updated.
+```swift
+class CounterModel: ObservableObject {
+    @Published var count = 0
+}
+
+@main
+struct MyApp: App {
+    @StateObject private var counter = CounterModel()
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(counter)
+        }
+    }
+}
+struct ContentView: View {
+    @EnvironmentObject var counter: CounterModel
+
+    var body: some View {
+        VStack {
+            Text("Count: \(counter.count)")
+            Button("Increment") {
+                counter.count += 1
+            }
+        }
+    }
+}
+```
+
