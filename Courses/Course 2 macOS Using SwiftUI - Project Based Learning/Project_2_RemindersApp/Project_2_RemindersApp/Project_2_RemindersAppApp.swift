@@ -11,7 +11,11 @@ import SwiftUI
 struct Project_2_RemindersAppApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeScreen()
+            let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+              
+            HomeScreen().environment(
+                \.managedObjectContext, viewContext
+            )
         }
     }
 }
