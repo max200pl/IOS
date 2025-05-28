@@ -29,7 +29,48 @@ In this hierarchy:
 - `Grandchild View 2.1` explicitly sets the color scheme back to `.dark`, affecting only its descendants.
 - Views without an explicit override inherit the color scheme from their closest ancestor.
 
-## Example Usage
+
+
+## @Environment Usage
+
+- .presentationMode is used to control the presentation of views, such as modals or sheets.
+
+```swift
+struct ChildView: View {
+     @State private var isPresented = false
+
+    var body: some View {
+        VStack {
+            Text("Child View")
+                .padding()
+            Button("Show Modal") {
+                isPresented.toggle()
+            }
+            .sheet(isPresented: $isPresented) {
+                ModalView()
+            }
+        }
+    }
+}
+
+struct ModalView: View {
+    @Environment(\.presentationMode) var presentationMode
+
+    var body: some View {
+        VStack {
+            Text("Modal View")
+                .padding()
+            Button("Dismiss") {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+    }
+}
+```
+
+## Example 2 Color Scheme
+
+- Like environment values, the `@Environment` property wrapper allows you to access system-wide settings such as the color scheme.
 
 ```swift
 struct ContentView: View {
@@ -43,3 +84,4 @@ struct ContentView: View {
         }
     }
 }
+```
