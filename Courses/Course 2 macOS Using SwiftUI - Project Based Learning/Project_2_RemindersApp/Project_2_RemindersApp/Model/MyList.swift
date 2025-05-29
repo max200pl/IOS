@@ -11,9 +11,12 @@ import AppKit
 
 @objc(MyList)
 class MyList: NSManagedObject, BaseModel {
+    // Свойство класса которое возвращает Весь список с Core data
     static var all: NSFetchRequest<MyList> {
+        // запрос на получения данных
         let request: NSFetchRequest<MyList> = MyList.fetchRequest()
         
+        // без сортировки
         request.sortDescriptors = []
           
         return request

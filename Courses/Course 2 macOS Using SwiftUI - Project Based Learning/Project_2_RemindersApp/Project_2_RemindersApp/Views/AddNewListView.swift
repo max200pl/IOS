@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AddNewListView: View {
-    @ObservedObject private var vm: AddNewListViewModel
+    @ObservedObject private var vm: AddNewListViewModel // подписываемя на изменения
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode // это диалог
     
-    init(vm: AddNewListViewModel) {
+    init(vm: AddNewListViewModel) { // передаем в конструктор класс при создании и называем vm
         self.vm = vm
     }
     

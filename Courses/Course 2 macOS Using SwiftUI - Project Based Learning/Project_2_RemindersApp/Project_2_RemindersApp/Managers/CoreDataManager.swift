@@ -8,13 +8,15 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+class CoreDataManager { // Синглтон
     let persistentContainer: NSPersistentContainer
     static let shared = CoreDataManager()
 
-    private init() {
+    private init() { // защита от повторного выполнения
+        // Register NSColorTransformer
         ValueTransformer.setValueTransformer(NSColorTransformer(), forName: NSValueTransformerName("NSColorTransformer"))
 
+        
         persistentContainer = NSPersistentContainer(name: "RemindersModel")
         persistentContainer.loadPersistentStores { description, error in
             if let error = error as NSError? {

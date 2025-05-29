@@ -9,7 +9,9 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class AddNewListViewModel: ObservableObject {
+// view model нужна для общения с моделью и получения данных
+
+class AddNewListViewModel: ObservableObject { // для обновления UI ObservableObject
     
     @Published var name: String = ""
     @Published var color: Color = .blue
@@ -21,9 +23,7 @@ class AddNewListViewModel: ObservableObject {
     }
     
     func save() {
-        
         do {
-            
             let myList = MyList(context: context)
             myList.name = name
             myList.color = NSColor(color)
@@ -31,7 +31,6 @@ class AddNewListViewModel: ObservableObject {
         } catch {
             print(error)
         }
-        
     }
     
 }

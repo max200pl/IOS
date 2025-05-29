@@ -16,7 +16,9 @@ struct MyListViewModel: Identifiable {
         self.myList = myList
     }
     
-    var id: NSManagedObjectID {
+    // что мы отдаем на внешний мир
+    // ----------------------------
+    var id: NSManagedObjectID { //CoreData Id
         myList.objectID
     }
     
@@ -24,8 +26,8 @@ struct MyListViewModel: Identifiable {
         myList.name ?? ""
     }
     
-    var color: Color {
+    var color: Color { // SwiftUI -> Color
         Color(myList.color ?? .clear)
     }
-    
+    // ----------------------------
 }

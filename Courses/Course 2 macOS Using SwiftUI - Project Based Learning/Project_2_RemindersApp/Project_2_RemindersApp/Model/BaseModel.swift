@@ -13,8 +13,10 @@ protocol BaseModel {
     func save() throws
 }
 
+// дает реализацию по умолчанию если если класс — это Core Data модель (NSManagedObject).
 extension BaseModel where Self: NSManagedObject {
     
+    //метод по умолчанию
     static var viewContext: NSManagedObjectContext {
         CoreDataManager.shared.persistentContainer.viewContext
     }
