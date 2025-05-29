@@ -34,36 +34,6 @@
             endingLineNumber = "21"
             landmarkName = "init()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D1C56F3E-F2F6-4442-9726-D46A9FCB9B0C - bf491198218c13b7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Project_2_RemindersApp.CoreDataManager.() -&gt; Project_2_RemindersApp.CoreDataManager.init() -&gt; Project_2_RemindersApp.CoreDataManager"
-                  moduleName = "Project_2_RemindersApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksym_poskannyi/Desktop/___Personal___/Repos/IOS/Courses/Course%202%20macOS%20Using%20SwiftUI%20-%20Project%20Based%20Learning/Project_2_RemindersApp/Project_2_RemindersApp/Managers/CoreDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21">
-               </Location>
-               <Location
-                  uuid = "D1C56F3E-F2F6-4442-9726-D46A9FCB9B0C - b7854aae1be00c5d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.NSPersistentStoreDescription, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Project_2_RemindersApp.CoreDataManager.() -&gt; Project_2_RemindersApp.CoreDataManager.init() -&gt; Project_2_RemindersApp.CoreDataManager"
-                  moduleName = "Project_2_RemindersApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksym_poskannyi/Desktop/___Personal___/Repos/IOS/Courses/Course%202%20macOS%20Using%20SwiftUI%20-%20Project%20Based%20Learning/Project_2_RemindersApp/Project_2_RemindersApp/Managers/CoreDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
