@@ -11,14 +11,11 @@ struct SideBarView: View {
     @Environment(\.managedObjectContext) var context: NSManagedObjectContext
     @State private var isPresented: Bool = false
     
-    
     var body: some View {
         VStack {
             Text("Al ites Count 10")
             
-            List (1...5, id: \.self) { index in
-                Text("Item \(index)")
-            }
+            MyListsView(vm: MyListsViewModel(context: context))
             
             Spacer()
             
@@ -38,5 +35,6 @@ struct SideBarView: View {
 }
 
 #Preview {
+    
     SideBarView()
 }
