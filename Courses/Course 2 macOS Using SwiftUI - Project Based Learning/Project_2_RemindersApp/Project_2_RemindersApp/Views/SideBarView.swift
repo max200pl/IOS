@@ -27,7 +27,7 @@ struct SideBarView: View {
                     Text("Add List")
                 }
             }.buttonStyle(.plain)
-                .padding(.horizontal)
+                .padding()
         }.sheet(isPresented: $isPresented, content: {
             AddNewListView(vm: AddNewListViewModel(context: context))
         })

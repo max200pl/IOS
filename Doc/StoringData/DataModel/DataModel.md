@@ -36,3 +36,24 @@ Class `Codegen`gen refers to how Xcode generates the class for the entity. There
 - **Manual/None**: You will manually create the class for the entity.
 - **Class Definition**: Xcode generates a class for the entity, but you can customize it.
 - **Category/Extension**: Xcode generates a class and an extension for the entity, allowing you to add custom methods without modifying the generated code.
+
+### Relationships
+Relationships define how entities are connected to each other. For example, a `Person` entity might have a relationship to a `Car` entity, indicating that a person can own multiple cars.
+
+### How to Create a Relationship
+
+1. Select the entity you want to add a relationship to.
+2. Click the "+" button in the Relationships section.
+3. Name the relationship (e.g., `cars` for a `Person` entity).
+4. Set the destination entity (e.g., `Car`).
+
+### Relationship Types
+- **To-One**: A single instance of the destination entity (e.g., a person owns one car).
+- **To-Many**: Multiple instances of the destination entity (e.g., a person owns multiple cars).
+
+### Delete Rule
+
+- **Nullify**: If the source entity is deleted, the relationship is set to nil. (If we delete a person, their cars will still exist but will no longer be associated with that person).
+- **Cascade**: If the source entity is deleted, the destination entities are also deleted. (If we delete a person, all their cars are deleted).
+- **Deny**: If the source entity is deleted, the deletion is denied if there are related destination entities. (If we try to delete a person with cars, it will not allow the deletion).
+

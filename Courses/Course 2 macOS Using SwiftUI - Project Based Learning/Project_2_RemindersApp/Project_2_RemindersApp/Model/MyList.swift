@@ -10,7 +10,7 @@ import CoreData
 import AppKit
 
 @objc(MyList)
-class MyList: NSManagedObject, BaseModel {
+public class MyList: NSManagedObject, BaseModel {
     // Свойство класса которое возвращает Весь список с Core data
     static var all: NSFetchRequest<MyList> {
         // запрос на получения данных
@@ -31,7 +31,7 @@ extension MyList {
 
     @NSManaged public var color: NSColor?
     @NSManaged public var name: String?
-
+    @NSManaged public var items: NSSet?
 }
 
 extension MyList : Identifiable {
