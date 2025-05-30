@@ -11,20 +11,24 @@ struct MyListItemsView: View {
     var items: [MyListItemViewModel]
     
     typealias ItemAdded = ((String, Date?) -> Void)?
+    typealias ItemDeleted = ((MyListItemViewModel) -> Void)?
     
     var onItemAdded: ItemAdded
+    var onItemDeleted: ItemDeleted
     
-    init(items: [MyListItemViewModel], onItemAdded: ItemAdded = nil) {
-        self.items = items
+    init(items: [MyListItemViewModel], onItemAdded: ItemAdded = nil, onItemDeleted: ItemDeleted = nil) {
         self.onItemAdded = onItemAdded
+        self.items = items
+        self.onItemDeleted = onItemDeleted
     }
     
     var body: some View {
         VStack(alignment: .leading) { 
             List {
                 ForEach(items, id:  \.listItemId) { item in
-                    Text(item.title)
-                    Divider()
+                    ListItemCell(item: item) { item in
+                        onItemDeleted?(item)
+                    }
                 }
                 
                 AddNewListItemView { title, DueDate in

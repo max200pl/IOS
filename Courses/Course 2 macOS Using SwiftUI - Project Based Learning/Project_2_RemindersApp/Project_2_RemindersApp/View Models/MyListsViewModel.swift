@@ -53,6 +53,14 @@ class MyListsViewModel: NSObject, ObservableObject {
         }
     }
     
+    func deleteItem(_ item: MyListItemViewModel) {
+        let myListItem: MyListItem? = MyListItem.byId(id: item.listItemId)
+        
+        if let myListItem = myListItem {
+            try? myListItem.delete()
+        }
+    }
+    
     func delete(_ myList: MyListViewModel){
         let myList: MyList? = MyList.byId(id: myList.id)
         
