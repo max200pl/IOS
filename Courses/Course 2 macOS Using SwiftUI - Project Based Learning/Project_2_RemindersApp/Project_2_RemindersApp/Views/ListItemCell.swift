@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListItemCell: View {
     @State private var active: Bool = false
+    @State private var showPopover: Bool = false
     
     let item: MyListItemViewModel
     
@@ -23,7 +24,7 @@ struct ListItemCell: View {
             VStack(alignment: .leading){
                 Text(item.title)
 
-                if let dueDate = item.dyeDate {
+                if let dueDate = item.dueDate {
                     Text(dueDate.title)
                         .opacity(0.4)
                         .foregroundColor(dueDate.isPastDue ? .red : .primary)
@@ -41,11 +42,20 @@ struct ListItemCell: View {
                 
                 Image(systemName: Constants.Icons.exclaimationMarkCircle)
                     .foregroundColor(.purple)
+                    .onTapGesture {
+                        showPopover = true
+                    }.popover(isPresented: $showPopover, arrowEdge: .leading) {
+                        EditListItemView(item: item){
+                            showPopover = false
+                        }
+                    }
             }
         }
         .contentShape(Rectangle())
         .onHover { value in
-            active = value
+            if !showPopover {
+                active = value
+            }
         }
     }
 }

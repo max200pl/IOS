@@ -24,7 +24,7 @@ struct MyListItemViewModel {
         myListItem.title ?? "No title"
     }
     
-    var dyeDate: DueDate? {
+    var dueDate: DueDate? {
         if let date = myListItem.dueDate {
             return DueDate.from(value: date)
         } else {
