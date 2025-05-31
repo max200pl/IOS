@@ -22,10 +22,16 @@ struct MyListsView: View {
                 ForEach(vm.myLists) { list in
                     NavigationLink {
                         MyListItemsHeader(name: list.name, count: 6, color: list.color)
-                        MyListItemsView(items: list.items, onItemAdded: {title, dueDue in
-                            vm.saveTo(list: list, title: title, dueDate: dueDue)
-                            
-                        }, onItemDeleted: vm.deleteItem)
+                        
+                        MyListItemsView(
+                            items: list.items,
+                            onItemAdded:
+                                {title, dueDue in
+                                    vm.saveTo(list: list, title: title, dueDate: dueDue)
+                                },
+                            onItemDeleted: vm.deleteItem,
+                            onItemCompleted: vm.markAsCompleted
+                        )
                     } label: {
                         HStack {
                             Image(systemName: Constants.Icons.line3HorizontalCircleFill)
