@@ -103,6 +103,12 @@ class MyListsViewModel: NSObject, ObservableObject {
         }
     }
     
+    var allListItemsCount: Int {
+        myLists.reduce(into: 0) { result, myList in
+            result += myList.itemsCount
+        }
+    }
+    
     private func fetchAll() {
         do {
             //1. fetch запрос на получения данных
