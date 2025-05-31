@@ -36,9 +36,34 @@ class MyListsViewModel: NSObject, ObservableObject {
         // Один объект «слушает» другой    fetchResultsController.delegate = self
         fetchResultsController.delegate = self // подключаем делегат
 
-         
+        setupObservers()
+        
         fetchAll() // первая загрузка данных
     }
+    
+    // Когда мы обновили данные нужно обновить UI
+    
+     private func setupObservers() {
+        let notificationCenter = NotificationCenter.default
+         
+         notificationCenter.addObserver(
+            self,
+            selector: #selector(managedObjectContextDidChange),
+            name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+            object: context
+         )
+  
+    }
+    
+    @objc func managedObjectContextDidChange(notification: Notification) {
+        
+        guard let userInfo = notification.userInfo else { return }
+        
+        if let updates = userInfo[NSUpdatedObjectsKey] as? Set<MyListItem>, updates.count > 0 {
+            fetchAll()
+        }
+    }
+    
     
     func saveTo(list: MyListViewModel, title: String, dueDate: Date?) {
          let myListItem = MyListItem(context: context)
