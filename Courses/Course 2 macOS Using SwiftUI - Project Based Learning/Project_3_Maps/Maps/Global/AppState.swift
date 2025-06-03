@@ -9,6 +9,6 @@ import Foundation
 
 class AppState: ObservableObject {
     @Published var places: [PlaceAnnotation] = []
-    
+    @Published var selectedPlace: PlaceAnnotation?
     
 }
