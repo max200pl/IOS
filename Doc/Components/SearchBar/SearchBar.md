@@ -25,3 +25,29 @@ extension TodolistViewController: UISearchBarDelegate {
     }
 }
 ```
+
+## SearchBar in SwiftUI
+
+```swift
+import SwiftUI
+
+struct SideBar: View {
+    @State private var search: String = ""
+
+    var body: some View {
+        VStack {
+            SearchResultList()
+        }.searchable(text: $search, placement: .sidebar, prompt: "Search Maps")
+            .onChange(of: search) { newValue in
+                print("Search text changed to: \(newValue)")
+            }
+
+        Text("SideBar")
+    }
+}
+
+#Preview {
+    SideBar()
+}
+
+```

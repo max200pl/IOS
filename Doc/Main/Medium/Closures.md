@@ -1,5 +1,7 @@
 # Closures in Swift
 
+[YouTube Link](https://www.youtube.com/watch?v=gnSak04uN94&ab_channel=AvenCodeiOSdeveloper)
+
 ## Overview
 
 Closures are self-contained blocks of functionality that can be passed around and used in your code. They are similar to functions but can capture and store references to variables and constants from the surrounding context in which they are defined. This feature is known as "capturing values."
@@ -37,6 +39,8 @@ A list of references to variables and constants that a closure captures. It is d
 ### Escaping Closure
 
 A closure that is passed as an argument to a function and is called after the function returns. It can capture references to variables and constants from the surrounding context.
+
+[Link swiftbook](https://swiftbook.org/tutorials/chto-takoe-escaping-v-swift-zamykaniyah/)
 
 #### Syntax:
 ```swift

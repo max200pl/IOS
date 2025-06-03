@@ -13,9 +13,9 @@ import RealmSwift
 class TodolistViewController: SwipeTableViewController {
     var todoItems:Results<Item>?
     let realm = try! Realm()
-    
+
 //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+
     //SET SELECTED CATEGORY
     var selectedCategory: Category? {
         didSet {
@@ -23,38 +23,38 @@ class TodolistViewController: SwipeTableViewController {
         }
     }
     @IBOutlet weak var searchBar: UISearchBar!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
+
         print(selectedCategory?.name ?? "No Category Selected")
         title = selectedCategory?.name
     }
-    
-    // JUST Before USER SEE SKREEN
+
+    // JUST Before USER SEE SCREEN
     override func viewWillAppear(_ animated: Bool) {
 //         guard let navBar = navigationController?.navigationBar else {fatalError("Navigation Bar not found")}
-        
+
 //        let navBarColor = UIColor(hue: 0.12, saturation: 0.81, brightness: 0.94, alpha: 1.0)
 //        navBar.barTintColor = navBarColor
 //        searchBar.barTintColor = navBarColor
 //        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
-    
+
     //MARK: - TABLE ACTIONS
-    
+
     // DEF CELS COUNT
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoItems?.count ?? 1
     }
-    
+
     // DEF CELS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        // SWIPE CEL
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        
+
         if let item = todoItems?[indexPath.row] {
             //Set text for text label
             cell.textLabel?.text = item.title
@@ -62,19 +62,19 @@ class TodolistViewController: SwipeTableViewController {
         } else {
             cell.textLabel?.text = "No ToDos added yet";
         }
-        
+
         return cell
     }
-    
-    
+
+
     // SELECT CELL
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
+
         if let item = todoItems?[indexPath.row] {
             do {
                 try realm.write {
                     item.done = !item.done
-                    
+
                     //DELEATE ITEM
 //                    realm.delete(item)
                 }
@@ -82,20 +82,20 @@ class TodolistViewController: SwipeTableViewController {
                 print("Error saving data: \(error)")
             }
         }
-        
+
         tableView.reloadData( )
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    
+
+
     @IBAction func addButtonPress(_ sender: UIBarButtonItem) {
         var textField = UITextField()
-        
+
         let alert = UIAlertController(title: "Add new ToDo", message: "", preferredStyle: .alert)
-        
+
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             // What will happen once the user clicks the Add Item button on our UIAlert
-            
+
             if let currentCategory = self.selectedCategory {
                 do {
                     try self.realm.write{
@@ -108,32 +108,32 @@ class TodolistViewController: SwipeTableViewController {
                     print("Error saving item: \(error)")
                 }
             }
-            
+
             self.tableView.reloadData()
         }
-        
+
         alert.addTextField { (alertTextField) in
             textField.placeholder = "Add new ToDo"
-            
+
             print(textField.text ?? "No Text")
-            
+
             textField = alertTextField
         }
-        
+
         alert.addAction(action)
-        
+
         present(alert, animated: true, completion: nil)
-        
+
     }
-    
- 
+
+
     func LoadItems() {
         //FILTERED CURENT ITEM
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
-        
+
         tableView.reloadData()
     }
-    
+
     override func updateModel(at indexPath: IndexPath) {
         if let itemToDelete = todoItems?[indexPath.row] {
             do {
@@ -150,19 +150,19 @@ class TodolistViewController: SwipeTableViewController {
 //MARK: - UISearchBarDelegate WORKING WITH SEARCH BAR
 
 extension TodolistViewController: UISearchBarDelegate {
-    
+
     // FILTERING BY SEARCH BAR
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         todoItems  = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
-        
+
         tableView.reloadData()
     }
-    
+
     // WHEN WE DISMISS
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             LoadItems()
-            
+
             // Wating when main thread
             DispatchQueue.main.async {
                 // IF not long time did nothing cursor disaprear and ceyboard
