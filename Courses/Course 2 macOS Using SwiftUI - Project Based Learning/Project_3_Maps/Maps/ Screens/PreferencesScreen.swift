@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PreferencesScreen: View {
     @AppStorage("useLightMap") var useLightMap: Bool = false
-    @AppStorage("distanceUnit") var distanceUnit  = DistanceUnit.kilometers
+    @AppStorage("distanceUnit") var distanceUnit = DistanceUnit.kilometers
     
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
