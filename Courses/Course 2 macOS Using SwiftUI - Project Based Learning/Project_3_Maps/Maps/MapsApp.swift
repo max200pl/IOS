@@ -14,7 +14,14 @@ struct MapsApp: App {
             let appState = AppState()
             
             HomeScreen()
-                .environmentObject(appState)  
+                .environmentObject(appState)
+        }.commands {
+            CommandGroup(after: .appInfo){
+                Button("Preferences"){
+                    PreferencesScreen()
+                        .openInWindwo(title: "Preferences", sender: self)
+                }
+            }
         }
     }
 }
