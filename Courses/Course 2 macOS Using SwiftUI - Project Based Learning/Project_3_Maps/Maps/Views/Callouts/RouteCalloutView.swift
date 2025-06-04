@@ -36,6 +36,8 @@ class RouteCalloutView: NSView {
         
         let documentView = NSView(frame: .zero)
         
+        let distanceFormatter = DistanceFormatter()
+        
         var offsetY: CGFloat = 0
         
         for step in route.steps.reversed() {
@@ -57,11 +59,26 @@ class RouteCalloutView: NSView {
             instructionsTextField.isEditable = false
             instructionsTextField.isBezeled = false
             
+            let distanceTextField = NSTextField(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
+            guard let value = UserDefaults.standard.value(forKey: "distanceUnit") as? String,
+                  let distanceUnit = DistanceUnit(rawValue: value)
+            else {return}
+            
+            distanceFormatter.unitOptions = distanceUnit
+            
+            distanceTextField.stringValue = "\(distanceFormatter.format(distanceInMeters: step.distance))"
+            distanceTextField.isEditable = false
+            distanceTextField.isBezeled = false
+            distanceTextField.wantsLayer = true
+            distanceTextField.layer?.opacity = 0.4
+            
+            
             let vStackView = NSStackView()
             vStackView.alignment = .left
             vStackView.orientation = .vertical
             
             vStackView.addArrangedSubview(instructionsTextField)
+            vStackView.addArrangedSubview(distanceTextField)
             
             hStackView.addArrangedSubview(imgView)
             hStackView.addArrangedSubview(vStackView)
