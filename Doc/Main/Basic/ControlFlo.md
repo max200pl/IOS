@@ -143,3 +143,19 @@ You can also use `guard` for optional binding, which allows you to safely unwrap
 ### Guard VS If
 
 The main difference between `guard` and `if` is that `guard` requires an else clause, which must exit the current scope (e.g., return, break, continue). This makes `guard` a good choice for early exits in functions or methods. In contrast, `if` does not require an else clause and can be used for more complex conditional logic.
+
+## Defer Statement
+
+= «уборщик» кода, чтобы гарантировать закрытие/освобождение ресурсов.
+
+The `defer` statement is used to execute a block of code just before the current scope exits, regardless of how the exit occurs (e.g., return, break, continue). This is useful for cleanup tasks, such as closing files or releasing resources. Here's an example:
+
+```swift
+    func readFile() {
+        let file = openFile("example.txt")
+        defer {
+            closeFile(file) // This will be executed when the function exits
+        }
+        // Read from the file
+    }
+```
