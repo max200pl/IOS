@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct SideBarScreen: View {
+    @EnvironmentObject var appState: AppState
+    
+    
     var body: some View {
-        Text("SideBar")
+        VStack(alignment: .leading){
+            StocksListScreen(vm: StockListViewModel(appState: appState))
+        }
     }
 }
 
 struct SideBarScreen_Previews: PreviewProvider {
     static var previews: some View {
         SideBarScreen()
+            .environmentObject(AppState())
     }
 }

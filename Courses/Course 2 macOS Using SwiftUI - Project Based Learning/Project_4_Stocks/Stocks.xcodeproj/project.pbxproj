@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		8D0A80B3279B065600409F3D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D0A80B2279B065600409F3D /* Preview Assets.xcassets */; };
 		8D0A80BC279B06E500409F3D /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A80BB279B06E500409F3D /* HomeScreen.swift */; };
 		8D0A80BE279B071500409F3D /* SideBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A80BD279B071500409F3D /* SideBarScreen.swift */; };
+		E391374C2DF2ECFE007E3D31 /* StocksListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E391374B2DF2ECFE007E3D31 /* StocksListScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +23,17 @@
 		8D0A80B4279B065600409F3D /* Stocks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Stocks.entitlements; sourceTree = "<group>"; };
 		8D0A80BB279B06E500409F3D /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		8D0A80BD279B071500409F3D /* SideBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarScreen.swift; sourceTree = "<group>"; };
+		E391374B2DF2ECFE007E3D31 /* StocksListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksListScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E39137382DF2E101007E3D31 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		E391373B2DF2E152007E3D31 /*  Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = " Services"; sourceTree = "<group>"; };
+		E39137402DF2E1AE007E3D31 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
+		E39137432DF2E396007E3D31 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
+		E39137482DF2E536007E3D31 /* Global */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Global; sourceTree = "<group>"; };
+		E391374D2DF2EF7A007E3D31 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8D0A80A5279B065500409F3D /* Frameworks */ = {
@@ -54,6 +65,12 @@
 		8D0A80AA279B065500409F3D /* Stocks */ = {
 			isa = PBXGroup;
 			children = (
+				E391374D2DF2EF7A007E3D31 /* Views */,
+				E39137482DF2E536007E3D31 /* Global */,
+				E39137432DF2E396007E3D31 /* ViewModels */,
+				E39137402DF2E1AE007E3D31 /* Utils */,
+				E391373B2DF2E152007E3D31 /*  Services */,
+				E39137382DF2E101007E3D31 /* Models */,
 				8D0A80BA279B06D700409F3D /* Screens */,
 				8D0A80AB279B065500409F3D /* StocksApp.swift */,
 				8D0A80AF279B065600409F3D /* Assets.xcassets */,
@@ -76,6 +93,7 @@
 			children = (
 				8D0A80BB279B06E500409F3D /* HomeScreen.swift */,
 				8D0A80BD279B071500409F3D /* SideBarScreen.swift */,
+				E391374B2DF2ECFE007E3D31 /* StocksListScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -94,6 +112,14 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E39137382DF2E101007E3D31 /* Models */,
+				E391373B2DF2E152007E3D31 /*  Services */,
+				E39137402DF2E1AE007E3D31 /* Utils */,
+				E39137432DF2E396007E3D31 /* ViewModels */,
+				E39137482DF2E536007E3D31 /* Global */,
+				E391374D2DF2EF7A007E3D31 /* Views */,
 			);
 			name = Stocks;
 			productName = Stocks;
@@ -153,6 +179,7 @@
 				8D0A80BC279B06E500409F3D /* HomeScreen.swift in Sources */,
 				8D0A80AC279B065500409F3D /* StocksApp.swift in Sources */,
 				8D0A80BE279B071500409F3D /* SideBarScreen.swift in Sources */,
+				E391374C2DF2ECFE007E3D31 /* StocksListScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,7 +46,7 @@ struct ChildView: View {
             Button("Show Modal") {
                 isPresented.toggle()
             }
-            .sheet(isPresented: $isPresented) {
+            .sheet(isPresented: $isPresented) { // Presenting a modal view
                 ModalView()
             }
         }
@@ -82,6 +82,32 @@ struct ContentView: View {
                 .padding()
             ChildView()
         }
+    }
+}
+```
+
+## .task in SwiftUI
+
+The `.task` modifier in SwiftUI is used to perform asynchronous tasks when a view appears. It allows you to run code that fetches data or performs other operations without blocking the main thread.
+
+```swift
+struct ContentView: View {
+    @State private var data: String = "Loading..."
+
+    var body: some View {
+        VStack {
+            Text(data)
+                .padding()
+        }
+        .task {
+            await fetchData()
+        }
+    }
+
+    func fetchData() async {
+        // Simulate a network call
+        try? await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
+        data = "Data Loaded"
     }
 }
 ```

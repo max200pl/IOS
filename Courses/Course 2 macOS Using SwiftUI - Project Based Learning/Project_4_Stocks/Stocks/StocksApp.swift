@@ -13,6 +13,7 @@ struct StocksApp: App {
         WindowGroup {
            HomeScreen()
                 .frame(minWidth: 400, minHeight: 400)
+                .environmentObject(AppState())
         }
     }
 }
