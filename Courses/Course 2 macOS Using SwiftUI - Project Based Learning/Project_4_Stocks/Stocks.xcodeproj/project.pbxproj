@@ -13,6 +13,7 @@
 		8D0A80BC279B06E500409F3D /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A80BB279B06E500409F3D /* HomeScreen.swift */; };
 		8D0A80BE279B071500409F3D /* SideBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A80BD279B071500409F3D /* SideBarScreen.swift */; };
 		E391374C2DF2ECFE007E3D31 /* StocksListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E391374B2DF2ECFE007E3D31 /* StocksListScreen.swift */; };
+		E391375F2DF324A9007E3D31 /* NewsAricleListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E391375E2DF324A9007E3D31 /* NewsAricleListScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8D0A80BB279B06E500409F3D /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		8D0A80BD279B071500409F3D /* SideBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarScreen.swift; sourceTree = "<group>"; };
 		E391374B2DF2ECFE007E3D31 /* StocksListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksListScreen.swift; sourceTree = "<group>"; };
+		E391375E2DF324A9007E3D31 /* NewsAricleListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAricleListScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -96,6 +98,7 @@
 				8D0A80BB279B06E500409F3D /* HomeScreen.swift */,
 				8D0A80BD279B071500409F3D /* SideBarScreen.swift */,
 				E391374B2DF2ECFE007E3D31 /* StocksListScreen.swift */,
+				E391375E2DF324A9007E3D31 /* NewsAricleListScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			files = (
 				8D0A80BC279B06E500409F3D /* HomeScreen.swift in Sources */,
 				8D0A80AC279B065500409F3D /* StocksApp.swift in Sources */,
+				E391375F2DF324A9007E3D31 /* NewsAricleListScreen.swift in Sources */,
 				8D0A80BE279B071500409F3D /* SideBarScreen.swift in Sources */,
 				E391374C2DF2ECFE007E3D31 /* StocksListScreen.swift in Sources */,
 			);

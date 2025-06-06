@@ -12,7 +12,7 @@ struct HomeScreen: View {
         NavigationView {
             SideBarScreen()
                 .frame(minWidth: 300, maxWidth: 400)
-            Text("Detail")
+            NewsAricleListScreen()
         }
     }
 }
