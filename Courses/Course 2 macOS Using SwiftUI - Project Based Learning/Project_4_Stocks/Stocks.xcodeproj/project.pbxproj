@@ -33,6 +33,7 @@
 		E39137432DF2E396007E3D31 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
 		E39137482DF2E536007E3D31 /* Global */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Global; sourceTree = "<group>"; };
 		E391374D2DF2EF7A007E3D31 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		E39137522DF30127007E3D31 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 		8D0A80AA279B065500409F3D /* Stocks */ = {
 			isa = PBXGroup;
 			children = (
+				E39137522DF30127007E3D31 /* Extensions */,
 				E391374D2DF2EF7A007E3D31 /* Views */,
 				E39137482DF2E536007E3D31 /* Global */,
 				E39137432DF2E396007E3D31 /* ViewModels */,
@@ -120,6 +122,7 @@
 				E39137432DF2E396007E3D31 /* ViewModels */,
 				E39137482DF2E536007E3D31 /* Global */,
 				E391374D2DF2EF7A007E3D31 /* Views */,
+				E39137522DF30127007E3D31 /* Extensions */,
 			);
 			name = Stocks;
 			productName = Stocks;

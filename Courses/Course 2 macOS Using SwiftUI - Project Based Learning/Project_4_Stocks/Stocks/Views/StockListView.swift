@@ -14,12 +14,11 @@ struct StockListView: View {
     var body: some View {
         List {
             
-            Text("HEADER")
+            BussinesNewsHeaderView()
             
             ForEach(stocks) { stock in
-                Text(stock.symbol)
+                StockCellView(stock: stock)
             }
-            
         }
     }
 }
