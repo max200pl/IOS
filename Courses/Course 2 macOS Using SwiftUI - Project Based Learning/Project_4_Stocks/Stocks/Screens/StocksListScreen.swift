@@ -16,10 +16,17 @@ struct StocksListScreen: View {
     init(vm: StockListViewModel) {
         self._vm = StateObject(wrappedValue: vm)
     }
+    var stocks: [StockViewModel] {
+        if !search.isEmpty {
+            return vm.stocks.filter { $0.symbol.starts(with: search.uppercased())}
+        } else {
+            return vm.stocks
+        }
+    }
     
     var body: some View {
         VStack {
-            StockListView(stocks: vm.stocks)
+            StockListView(stocks: stocks)
                 .searchable(text: $search, placement:  .sidebar)
         }.task {
             await vm.getStocks()
