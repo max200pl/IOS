@@ -9,5 +9,5 @@ import Foundation
 
 class AppState: ObservableObject {
     @Published var stocks: [StockViewModel] = []
-
+    @Published var route: Route = .businessAricles
 }

@@ -24,6 +24,18 @@ class Webservice {
         return stocks
     }
     
+    func fetchAriclesBy(stock: Stock) async throws -> [Article] {
+        let (data, response) = try await URLSession.shared.data(from: Constants.Urls.articlesBy(stock: stock))
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw NetworkError.invalidServerResponse
+        }
+        
+        let articleResponse = try JSONDecoder().decode(ArticleResponse.self, from: data)
+        
+        return articleResponse.articles
+    }
+    
     func fetchBusinnessAricles() async throws -> [Article] {
         let (data, response) = try await URLSession.shared.data(from: Constants.Urls.bussinesArticles)
         
