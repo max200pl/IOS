@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct StockViewModel: Identifiable {
+struct StockViewModel: Identifiable, Equatable {
+    static func == (lhs: StockViewModel, rhs: StockViewModel) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     private var stock: Stock
     
     init(stock: Stock) {

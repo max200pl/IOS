@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct StockListView: View {
-    
     let stocks: [StockViewModel]
+    @EnvironmentObject private var appState: AppState
     
     var body: some View {
         List {
@@ -17,8 +17,13 @@ struct StockListView: View {
             BussinesNewsHeaderView()
             
             ForEach(stocks) { stock in
-                StockCellView(stock: stock)
+                StockCellView(stock: stock) { selectedStock in
+                    print(selectedStock)
+                    // set the route
+                    appState.route = .stockDetail(selectedStock)
+                }
             }
+            
         }
     }
 }

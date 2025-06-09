@@ -16,11 +16,11 @@ struct HomeScreen: View {
                 .frame(minWidth: 300, maxWidth: 400)
             
             switch appState.route {
-            case .businessAricles:
-                NewsAricleListScreen()
-            case .stockDetails(let stock):
-                StockDetailScreen(stock: stock)
-            }
+                case .businessArticles:
+                    NewsArticleListScreen()
+                case .stockDetail(let stock):
+                    StockDetailScreen(stock: stock)
+                }
         }
     }
 }

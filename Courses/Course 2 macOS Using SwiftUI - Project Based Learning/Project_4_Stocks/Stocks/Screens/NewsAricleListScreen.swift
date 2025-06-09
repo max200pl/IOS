@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct NewsAricleListScreen: View {
+struct NewsArticleListScreen: View {
+    
     @StateObject private var vm = StockArticleListViewModel()
     
     var body: some View {
@@ -19,6 +20,7 @@ struct NewsAricleListScreen: View {
                 .padding()
             
             NewsArticleListView(stockArticles: vm.stockArticles)
+            
         }.task {
             await vm.fetchArticles()
         }
@@ -26,5 +28,5 @@ struct NewsAricleListScreen: View {
 }
 
 #Preview {
-    NewsAricleListScreen()
+    NewsArticleListScreen()
 }

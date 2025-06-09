@@ -63,3 +63,21 @@ struct CounterView: View {
     }
 }
 ```
+
+## @Published
+- A property wrapper used in classes that conform to `ObservableObject`.
+- It marks a property as observable, meaning changes to this property will notify any views observing the object.
+- Example:
+```swift
+class UserSettings: ObservableObject {
+    @Published var username: String = ""
+}
+struct SettingsView: View {
+    @ObservedObject var settings = UserSettings()
+    var body: some View {
+        TextField("Username", text: $settings.username)
+            .padding()
+    }
+}
+```
+

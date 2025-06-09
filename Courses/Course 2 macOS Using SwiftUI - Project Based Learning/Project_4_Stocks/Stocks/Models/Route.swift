@@ -8,6 +8,6 @@
 import Foundation
 
 enum Route {
-    case businessAricles
-    case stockDetails(StockViewModel)
+    case businessArticles
+    case stockDetail(StockViewModel)
 }

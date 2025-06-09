@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StockCellView: View {
     let stock: StockViewModel
+    let onSelected: (StockViewModel) -> Void
     
     var body: some View {
         HStack {
@@ -39,10 +40,14 @@ struct StockCellView: View {
                 
             }
         }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                onSelected(stock)
+            }
         
     }
 }
 
 #Preview {
-    StockCellView(stock: StockViewModel(stock: Stock(symbol: "Apple", description: "Apple Inc.", price: 145.23, change: "+3.21")))
+    StockCellView(stock: StockViewModel(stock: Stock(symbol: "Apple", description: "Apple Inc.", price: 145.23, change: "+3.21")), onSelected: {_ in })
 }

@@ -12,7 +12,7 @@ struct NewsArticleListView: View {
     
     var body: some View {
         ForEach(stockArticles) { stockArticle in
-            AricleGridView(articles: stockArticle.articles)
+            ArticlesGridView(articles: stockArticle.articles)
         }
     }
 }

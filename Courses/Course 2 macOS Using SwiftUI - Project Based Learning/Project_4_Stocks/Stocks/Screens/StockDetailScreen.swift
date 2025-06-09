@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct StockDetailScreen: View {
+    
     let stock: StockViewModel
-    
     @StateObject private var vm = StockDetailViewModel()
-        
+    @EnvironmentObject private var app: AppState
     
+
+   
     var body: some View {
+        
         ScrollView {
             VStack {
                 
-                
-            }.task {
+                NewsArticleHeaderView(symbol: stock.symbol)
+                ArticlesGridView(articles: vm.articles)
+            }.task(id: stock) {
                 await vm.fetchArticlesByStock(stock: stock)
             }
         }

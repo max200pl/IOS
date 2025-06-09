@@ -26,6 +26,7 @@ struct ArticleCellView: View {
             Text(article.title)
                 .font(.title)
                 .fontWeight(.bold)
+            
         }
     }
 }
