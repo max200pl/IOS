@@ -11,7 +11,7 @@ struct StockDetailScreen: View {
     
     let stock: StockViewModel
     @StateObject private var vm = StockDetailViewModel()
-    @EnvironmentObject private var app: AppState
+    @EnvironmentObject private var routeState: RouteState
     
 
    
@@ -21,7 +21,12 @@ struct StockDetailScreen: View {
             VStack {
                 
                 NewsArticleHeaderView(symbol: stock.symbol)
-                ArticlesGridView(articles: vm.articles)
+                ArticlesGridView(articles: vm.articles) { article in
+                    guard let articlURL = article.url else { return }
+                    
+                    routeState.push(.stockDetail(stock))
+                    routeState.route = .articleDetail(articlURL)
+                }
             }.task(id: stock) {
                 await vm.fetchArticlesByStock(stock: stock)
             }

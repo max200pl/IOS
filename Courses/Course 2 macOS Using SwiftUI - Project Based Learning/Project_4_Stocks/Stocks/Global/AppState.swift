@@ -8,8 +8,18 @@
 import Foundation
 
 class AppState: ObservableObject {
+    var stockState: StocksState
+    var routeState: RouteState
+    
+    init(stockState: StocksState = StocksState(), routeState: RouteState = RouteState()) {
+        self.stockState = stockState
+        self.routeState = routeState
+    }
+    
+}
+
+class StocksState: ObservableObject {
     @Published var stocks: [StockViewModel] = []
-    @Published var route: Route = .businessArticles
     
     func stockBySymbol(_ symbol: String) -> StockViewModel? {
         
@@ -19,5 +29,19 @@ class AppState: ObservableObject {
         
         return stock
     }
+}
+
+class RouteState: ObservableObject {
+    var routes:[Route] = []
+    @Published var route: Route = .businessArticles
     
+    
+    func push(_ route: Route) {
+        routes.append(route)
+        self.route = route
+    }
+    
+    func pop() -> Route? {
+        return routes.popLast()
+    }
 }

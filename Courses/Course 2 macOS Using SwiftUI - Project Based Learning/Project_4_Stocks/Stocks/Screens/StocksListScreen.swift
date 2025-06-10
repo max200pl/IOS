@@ -41,5 +41,6 @@ struct StocksListScreen: View {
 }
 
 #Preview {
-    StocksListScreen(vm:StockListViewModel(appState: AppState( )))
+    
+    StocksListScreen(vm: StockListViewModel(stockState: StocksState()))
 }

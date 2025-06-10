@@ -9,18 +9,20 @@ import SwiftUI
 
 struct StockListView: View {
     let stocks: [StockViewModel]
-    @EnvironmentObject private var appState: AppState
+    @EnvironmentObject private var routeState: RouteState
     
     var body: some View {
         List {
             
-            BussinesNewsHeaderView()
+            BussinesNewsHeaderView(onSelected: {
+                routeState.route = .businessArticles
+            } )
             
             ForEach(stocks) { stock in
                 StockCellView(stock: stock) { selectedStock in
                     print(selectedStock)
                     // set the route
-                    appState.route = .stockDetail(selectedStock)
+                    routeState.route = .stockDetail(selectedStock)
                 }
             }
             

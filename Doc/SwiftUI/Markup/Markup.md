@@ -23,3 +23,32 @@
 - The `.onTapGesture` modifier allows you to add a tap gesture recognizer to a view.
 - It is used to handle tap events on views.
 
+## .toolbar
+- The `.toolbar` modifier adds a toolbar to a view.
+- Toolbars can contain buttons, menus, and other controls.
+
+- Example:
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Text("Hello, World!")
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    print("Tapped!")
+                }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Action") {
+                    print("Toolbar button tapped")
+                }
+            }
+        }
+    }
+}
+```
+

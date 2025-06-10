@@ -37,7 +37,7 @@ class Webservice {
     }
     
     func fetchBusinnessAricles() async throws -> [Article] {
-        let (data, response) = try await URLSession.shared.data(from: Constants.Urls.bussinesArticles)
+        let (data, response) = try await URLSession.shared.data(from: Constants.Urls.businessArticles)
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             print(response)

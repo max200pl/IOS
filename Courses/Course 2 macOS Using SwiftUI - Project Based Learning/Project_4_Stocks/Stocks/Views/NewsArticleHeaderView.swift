@@ -9,12 +9,12 @@ import SwiftUI
 
 struct NewsArticleHeaderView: View {
     
-    @EnvironmentObject private var appState: AppState
+    @EnvironmentObject private var stockState: StocksState
     let symbol: String
     
     var body: some View {
         
-        if let stock = appState.stockBySymbol(symbol) {
+        if let stock = stockState.stockBySymbol(symbol) {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading) {
                     Text(stock.symbol)
