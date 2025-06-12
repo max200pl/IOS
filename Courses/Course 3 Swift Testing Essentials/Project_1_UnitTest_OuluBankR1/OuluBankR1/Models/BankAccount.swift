@@ -16,6 +16,10 @@ enum DepositeType {
     case cash
     case transfer
 }
+
+enum WithdrawalType {
+    case check
+}
         
 // create BankAccount class 
 
@@ -45,5 +49,18 @@ class BankAccount {
         }
 
     }
-    
+
+    func withdraw(amount: Double, withdrawType: WithdrawalType){
+        let penaltyPercentage = 0.10
+        
+        if amount > balance {
+            let overdraftAmount = amount - balance
+            
+            let penalty = overdraftAmount * penaltyPercentage
+            
+            self.balance -= penalty
+        } else {
+            self.balance -= amount
+        }
+    }
 }

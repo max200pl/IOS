@@ -45,4 +45,21 @@ struct BankAccountTests {
             try bankAccount.deposit(amount: -100, depositType: .check)
         })
     }
+    
+    @Test
+    func withdrawing_amount_decreases_balance(){
+        let bankAccount = BankAccount(accountNumber: "1234567890", balance: 500)
+        bankAccount.withdraw(amount: 200, withdrawType: .check)
+        
+        #expect(bankAccount.balance == 300)
+    }
+    
+    @Test
+    func withdrawing_with_insufficient_balance_results_in_penalty(){
+        let bankAccount = BankAccount(accountNumber: "1234567890", balance: 500)
+        
+        bankAccount.withdraw(amount: 600, withdrawType: .check)
+        
+        #expect(bankAccount.balance == 490)
+    }
 }
