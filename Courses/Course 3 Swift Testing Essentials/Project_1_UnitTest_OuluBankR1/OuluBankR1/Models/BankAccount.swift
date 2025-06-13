@@ -20,12 +20,21 @@ enum DepositeType {
 enum WithdrawalType {
     case check
 }
+
+enum TransactionType {
+    case deposit
+    case withdrawal
+}
         
-// create BankAccount class 
+struct Transaction {
+    let amount: Double
+    let transactionType: TransactionType
+}
 
 class BankAccount {
     var accountNumber: String = ""
     private(set) var balance: Double = 0.0
+    private(set) var transactions: [Transaction] = []
     
     init(accountNumber: String, balance: Double) {
         self.accountNumber = accountNumber
@@ -39,13 +48,16 @@ class BankAccount {
             throw BankAccountError.invalidAmount
         }
         
+        
         switch depositType {
-        case .cash, .check:
-            self.balance += amount
-        case .transfer:
-            let fee = amount * transferFreePercentage
-            
-            self.balance += amount - fee
+            case .cash, .check:
+                self.balance += amount
+                self.transactions.append(Transaction(amount: amount, transactionType:  .deposit))
+            case .transfer:
+                let fee = amount * transferFreePercentage
+                let finalAmount = amount - fee
+                self.balance += finalAmount
+                self.transactions.append(Transaction(amount: finalAmount, transactionType:  .deposit))
         }
 
     }

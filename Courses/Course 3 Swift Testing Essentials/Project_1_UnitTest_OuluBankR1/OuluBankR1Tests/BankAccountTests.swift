@@ -62,4 +62,17 @@ struct BankAccountTests {
         
         #expect(bankAccount.balance == 490)
     }
+    
+    @Test
+    func depositing_amount_is_added_to_transaction_history(){
+        let bankAccount = BankAccount(accountNumber: "1234567890", balance: 500)
+        
+        try? bankAccount.deposit(amount: 10, depositType: .check)
+        
+        #expect(bankAccount.transactions.count == 1, "Deposit transaction not added to transaction history.")
+        #expect(bankAccount.transactions[0].amount == 10, "Deposit amount not correctly recorded in transaction history.")
+        #expect(bankAccount.transactions[0].transactionType == TransactionType.deposit, "Deposit transaction type not correctly recorded in transaction history.")
+    }
+    
+    
 }

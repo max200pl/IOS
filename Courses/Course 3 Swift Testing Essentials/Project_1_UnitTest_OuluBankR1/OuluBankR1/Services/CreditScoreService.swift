@@ -24,3 +24,8 @@ struct CreditScoreService {
 }
 // END OF CANNOT CHANGE THIS CODE
 
+protocol CreditScoreServiceProtocol {
+    func getCreditScore(ssn: String) async throws -> CreditScore?
+}
+
+extension CreditScoreService: CreditScoreServiceProtocol {}
