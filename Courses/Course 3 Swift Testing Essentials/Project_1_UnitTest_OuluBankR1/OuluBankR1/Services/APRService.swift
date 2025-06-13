@@ -9,13 +9,19 @@ import Foundation
 
 enum CreditScoreServiceError: LocalizedError {
     case notCreditScoreFound
+    case unavailable
     
     var errorDescription: String? {
         switch self {
         case .notCreditScoreFound:
             return NSLocalizedString(
-                "No credit score found", comment:
-                    "Error message when no credit score is found"
+                "No credit score found",
+                comment: "Error message when no credit score is found"
+            )
+        case .unavailable:
+            return NSLocalizedString(
+                "Credit score service unavailable or not applicable for the given SSN",
+                comment: "Credit score service unavailable or not applicable for the given SSN"
             )
         }
     }
@@ -38,7 +44,7 @@ struct APRService {
                 return Double.random(in: 6...10)
             }
         } else {
-            throw CreditScoreServiceError.notCreditScoreFound
+            throw CreditScoreServiceError.unavailable
         }
     }
 }
