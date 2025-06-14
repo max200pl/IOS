@@ -11,8 +11,13 @@ import Foundation
 
 struct MockCreditScoreService: CreditScoreServiceProtocol {
     
+    var onGetCreditScore: ((String) -> CreditScore?)?
+    
     func getCreditScore(ssn: String) async throws -> CreditScore? {
-        switch ssn {
+        if let onGetCreditScore {
+            return onGetCreditScore(ssn)
+        } else { 
+            switch ssn {
             case "123-45-6789": //good credit score
                 return CreditScore(score: 720, lastUpdated: "02/15/2025", reportedBy: "Experian")
             case "888-65-4321":
@@ -21,6 +26,7 @@ struct MockCreditScoreService: CreditScoreServiceProtocol {
                 return CreditScore(score: nil, lastUpdated: "01/10/2025", reportedBy: "Equifax")
             default: // no credit score
                 return nil
+            }
         }
     }
 }

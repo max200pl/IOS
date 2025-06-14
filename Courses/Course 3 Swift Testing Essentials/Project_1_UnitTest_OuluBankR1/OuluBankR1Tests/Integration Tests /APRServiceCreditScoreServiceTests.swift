@@ -10,5 +10,24 @@ import Testing
 
 struct APRServiceCreditScoreServiceTests {
     
-
+    @Test
+    func apr_service_calls_get_credit_score_on_credit_score_service() async throws {
+        let validSSN = "123-45-6789"
+        
+        var mockCreditScoreService = MockCreditScoreService()
+        
+        try await confirmation("APRService did not call GetCreditScore on CreditScoreService", expectedCount: 1) { confimation in
+            // you need macke sure that mockCreditScoreService.getCreditScore is fired
+            
+            mockCreditScoreService.onGetCreditScore = { ssn in
+                // call the confirmation
+                // expectation met
+                confimation()
+                return CreditScore(score: 500, lastUpdated: "02/15/25", reportedBy: "Expired Credit Card")
+            }
+          
+            let appService = APRService(creditScoreService: mockCreditScoreService)
+            let _ = try await appService.getAPR(ssn: validSSN)
+        }
+    }
 }
