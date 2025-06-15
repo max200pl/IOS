@@ -52,6 +52,17 @@
                ReferencedContainer = "container:OuluBankR1.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E3A2068F2DFEBF9D00DC0A47"
+               BuildableName = "CreditScoreServiceTests.xctest"
+               BlueprintName = "CreditScoreServiceTests"
+               ReferencedContainer = "container:OuluBankR1.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
