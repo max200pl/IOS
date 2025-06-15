@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+struct Product: Equatable {
+    let price: Double
+}
+
+struct ProductFilterState {
+    
+    var min: Double?
+    var max: Double?
+    
+    func filteredProducts(_ products: [Product]) -> [Product] {
+            
+        guard let min = min,
+                  let max = max else { return [] }
+            
+            return products.filter {
+                $0.price >= min && $0.price <= max
+        }
+    }
+    
+}
+
+
 struct ContentView: View {
     
     @Environment(\.aprService) private var aprService
