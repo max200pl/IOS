@@ -52,3 +52,29 @@ struct ContentView: View {
 }
 ```
 
+
+## Accessibility identifiers
+
+- Accessibility identifiers are used to identify views for UI testing.
+- They are set using the `.accessibilityIdentifier` modifier.
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        Text("Hello, World!")
+            .accessibilityIdentifier("greetingText")
+    }
+}
+```
+
+```swift
+import XCTest
+@testable import YourApp
+class ContentViewTests: XCTestCase {
+    func testGreetingTextAccessibilityIdentifier() {
+        let contentView = ContentView()
+        let identifier = contentView.accessibilityIdentifier
+        XCTAssertEqual(identifier, "greetingText")
+    }
+}
+```

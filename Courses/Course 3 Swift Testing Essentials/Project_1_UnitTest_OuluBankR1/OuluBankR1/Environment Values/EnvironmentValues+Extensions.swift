@@ -10,5 +10,5 @@ import SwiftUI
 
 extension EnvironmentValues {
     
-    
+    @Entry var aprService = APRService(creditScoreService: CreditScoreServiceFactory.current.service)
 }

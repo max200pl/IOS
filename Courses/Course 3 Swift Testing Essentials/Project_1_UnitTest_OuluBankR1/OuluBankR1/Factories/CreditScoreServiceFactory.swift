@@ -8,6 +8,19 @@
 import Foundation
 
 enum CreditScoreServiceFactory {
+    case testing
+    case production
     
-   
+    static var current: CreditScoreServiceFactory {
+        ProcessInfo.processInfo.arguments.contains("UITest") ? .testing : .production
+    }
+    
+    var service: CreditScoreServiceProtocol {
+        switch self {
+            case .testing:
+                return MockCreditScoreService()
+            case .production:
+                return CreditScoreService()
+        }
+    }
 }

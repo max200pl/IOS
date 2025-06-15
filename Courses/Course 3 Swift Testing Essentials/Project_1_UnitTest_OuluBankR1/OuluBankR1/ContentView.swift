@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @Environment(\.aprService) private var aprService
+    
     
     @State private var ssn: String = ""
     @State private var apr: Double?
@@ -23,7 +25,14 @@ struct ContentView: View {
             TextField("Enter ssn", text: $ssn)
                 .accessibilityIdentifier("ssnTextField")
             Button("Calculate APR") {
-                // call aprService.getAPR
+                Task {
+                    do {
+                        apr = try await aprService.getAPR(ssn: ssn)
+                    } catch {
+                        message = error.localizedDescription
+                    }
+                    
+                }
         
             }
             .accessibilityIdentifier("calculateAPRButton")
